@@ -1,0 +1,17 @@
+_dep_install:
+    _info:
+        title: Check for dependencies.
+    _env:
+        - CMD: NETWORK_DEP_INSTALL
+
+discover:
+    _info:
+        title: Discover devices on your ocal network.
+    _env:
+        - CMD: NETWORK_DISCOVER
+
+portscan:
+    _info:
+        title: Scan for open ports on specific IP address.
+    _env:
+        - CMD: NETWORK_PORTSCAN
