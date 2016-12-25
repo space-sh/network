@@ -42,7 +42,7 @@ NETWORK_DISCOVER ()
 
     PRINT "Searching network: ${address}."
 
-    nmap -sL ${address} | grep '(.*)'
+    nmap -sL "${address}" | grep '(.*)'
 }
 
 NETWORK_PORTSCAN ()
@@ -57,5 +57,5 @@ NETWORK_PORTSCAN ()
     PRINT "Scanning IP ${address}."
 
     local SUDO="${SUDO-}"
-    ${SUDO} nmap -sS ${address}
+    ${SUDO} nmap -sS "${address}"
 }
