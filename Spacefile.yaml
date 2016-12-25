@@ -22,7 +22,7 @@ _dep_install:
 
 discover:
     _info:
-        title: Discover devices on your ocal network.
+        title: Discover devices on your local network.
     _env:
         - CMD: NETWORK_DISCOVER
 
