@@ -19,7 +19,7 @@
 
 NETWORK_DEP_INSTALL ()
 {
-    SPACE_CMDDEP="OS_IS_INSTALLED PRINT"
+    SPACE_CMDDEP="OS_IS_INSTALLED PRINT"   # shellcheck disable=SC2034
     PRINT "Checking for OS dependencies." "info"
 
     OS_IS_INSTALLED "nmap" "nmap"
@@ -34,8 +34,8 @@ NETWORK_DEP_INSTALL ()
 
 NETWORK_DISCOVER ()
 {
-    SPACE_SIGNATURE="address"
-    SPACE_CMDDEP="PRINT"
+    SPACE_SIGNATURE="address"   # shellcheck disable=SC2034
+    SPACE_CMDDEP="PRINT"        # shellcheck disable=SC2034
 
     local address="${1:-192.168.0.0/24}"
     shift $(( $# > 0 ? 1 : 0 ))
@@ -47,9 +47,9 @@ NETWORK_DISCOVER ()
 
 NETWORK_PORTSCAN ()
 {
-    SPACE_SIGNATURE="address"
-    SPACE_CMDDEP="PRINT"
-    SPACE_CMDENV="SUDO=\${SUDO-}"
+    SPACE_SIGNATURE="address"       # shellcheck disable=SC2034
+    SPACE_CMDDEP="PRINT"            # shellcheck disable=SC2034
+    SPACE_CMDENV="SUDO=\${SUDO-}"   # shellcheck disable=SC2034
 
     local address="${1-192.168.0.1}"
     shift $(( $# > 0 ? 1 : 0 ))
