@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Disable warning about indirectly checking status code
+# shellcheck disable=SC2181
+
 NETWORK_DEP_INSTALL ()
 {
     SPACE_CMDDEP="OS_IS_INSTALLED PRINT"
