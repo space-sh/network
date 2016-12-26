@@ -20,14 +20,24 @@ _dep_install:
     _env:
         - CMD: NETWORK_DEP_INSTALL
 
+_info:
+    title: Network module
+    desc:|
+        Provides operations for inspecting IPs, services and devices on local network.
+
 discover:
     _info:
-        title: Discover devices on your local network.
+        title: Discover devices
+        desc:|
+            Discover devices on a local network given an IP address range.
     _env:
-        - CMD: NETWORK_DISCOVER
+        - cmd: network_discover
 
 portscan:
     _info:
-        title: Scan for open ports on specific IP address.
+        title: Port scanning
+        desc:|
+            Scan for open ports on specific IP address.
     _env:
         - CMD: NETWORK_PORTSCAN
+
