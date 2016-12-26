@@ -31,7 +31,7 @@ discover:
         desc:|
             Discover devices on a local network given an IP address range.
     _env:
-        - cmd: network_discover
+        - CMD: NETWORK_DISCOVER
 
 portscan:
     _info:
