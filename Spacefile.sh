@@ -52,7 +52,8 @@ NETWORK_DEP_INSTALL ()
 #=====================
 NETWORK_DISCOVER ()
 {
-    SPACE_SIGNATURE="address"   # shellcheck disable=SC2034
+    # shellcheck disable=SC2034
+    SPACE_SIGNATURE="address"
     SPACE_CMDDEP="PRINT"        # shellcheck disable=SC2034
 
     local address="${1:-192.168.0.0/24}"
@@ -77,7 +78,8 @@ NETWORK_DISCOVER ()
 #=====================
 NETWORK_PORTSCAN ()
 {
-    SPACE_SIGNATURE="address"       # shellcheck disable=SC2034
+    # shellcheck disable=SC2034
+    SPACE_SIGNATURE="address"
     SPACE_CMDDEP="PRINT"            # shellcheck disable=SC2034
     SPACE_CMDENV="SUDO=\${SUDO-}"   # shellcheck disable=SC2034
 
