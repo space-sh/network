@@ -27,7 +27,7 @@ clone os
 #=====================
 NETWORK_DEP_INSTALL ()
 {
-    SPACE_CMDDEP="OS_IS_INSTALLED PRINT"    # shellcheck disable=SC2034
+    SPACE_DEP="OS_IS_INSTALLED PRINT"       # shellcheck disable=SC2034
     PRINT "Checking for OS dependencies." "info"
 
     OS_IS_INSTALLED "nmap" "nmap"
@@ -56,7 +56,7 @@ NETWORK_DISCOVER ()
 {
     # shellcheck disable=SC2034
     SPACE_SIGNATURE="address"
-    SPACE_CMDDEP="PRINT"        # shellcheck disable=SC2034
+    SPACE_DEP="PRINT"           # shellcheck disable=SC2034
 
     local address="${1:-192.168.0.0/24}"
     shift $(( $# > 0 ? 1 : 0 ))
@@ -82,8 +82,8 @@ NETWORK_PORTSCAN ()
 {
     # shellcheck disable=SC2034
     SPACE_SIGNATURE="address"
-    SPACE_CMDDEP="PRINT"            # shellcheck disable=SC2034
-    SPACE_CMDENV="SUDO=\${SUDO-}"   # shellcheck disable=SC2034
+    SPACE_DEP="PRINT"               # shellcheck disable=SC2034
+    SPACE_ENV="SUDO=\${SUDO-}"      # shellcheck disable=SC2034
 
     local address="${1-192.168.0.1}"
     shift $(( $# > 0 ? 1 : 0 ))
