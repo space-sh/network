@@ -18,7 +18,7 @@ _dep_install:
     _info:
         title: Check for dependencies.
     _env:
-        - CMD: NETWORK_DEP_INSTALL
+        - RUN: NETWORK_DEP_INSTALL
 
 _info:
     title: Network module
@@ -31,7 +31,7 @@ discover:
         desc:|
             Discover devices on a local network given an IP address range.
     _env:
-        - CMD: NETWORK_DISCOVER
+        - RUN: NETWORK_DISCOVER
 
 portscan:
     _info:
@@ -39,5 +39,5 @@ portscan:
         desc:|
             Scan for open ports on specific IP address.
     _env:
-        - CMD: NETWORK_PORTSCAN
+        - RUN: NETWORK_PORTSCAN
 
