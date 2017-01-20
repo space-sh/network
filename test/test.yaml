@@ -54,6 +54,6 @@ _clean:
     _info:
         title: Do nothing.
     _env:
-        - CMDWRAP: !unset
+        - SPACE_WRAP: !unset
         - RUN: ":"
 
