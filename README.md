@@ -3,16 +3,19 @@
 Provides operations for inspecting IPs, services and devices on local network.
 
 
+
 ## /discover/
 	Discover devices
 
 	Discover devices on a local network given an IP address range.
+	
 
 
 ## /portscan/
 	Port scanning
 
 	Scan for open ports on specific IP address.
+	
 
 
 # Functions 
