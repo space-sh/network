@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-clone os
 
 # Disable warning about indirectly checking status code
 # shellcheck disable=SC2181
