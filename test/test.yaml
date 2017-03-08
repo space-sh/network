@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+@source: "@{DIR}/../Spacefile.sh"
+
 _info:
     title: Test suite for the Network module.
     desc: |
@@ -38,7 +40,7 @@ _platforms:
 _tests:
     -
         -
-            @include: @{DIR}/../Spacefile.yaml|/_dep_install
+            @include: @{DIR}/../Spacefile.yaml|/_dep_install/
         -
             _info:
                 title: Test discovering a device given an IP range
