@@ -93,3 +93,14 @@ NETWORK_PORTSCAN ()
     ${SUDO} nmap -sS "${address}"
 }
 
+NETWORK_PORT_BUSY()
+{
+    SPACE_SIGNATURE="port"
+
+    local port="${1}"
+    shift
+
+    # TODO
+
+    return 1
+}
