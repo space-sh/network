@@ -1,4 +1,4 @@
-# Network module | [![build status](https://gitlab.com/space-sh/network/badges/master/build.svg)](https://gitlab.com/space-sh/network/commits/master)
+# Network module | [![build status](https://gitlab.com/space-sh/network/badges/master/pipeline.svg)](https://gitlab.com/space-sh/network/commits/master)
 
 Provides operations for inspecting IPs, services and devices on local network.
 
