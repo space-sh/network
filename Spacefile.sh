@@ -93,14 +93,61 @@ NETWORK_PORTSCAN ()
     ${SUDO} nmap -sS "${address}"
 }
 
-NETWORK_PORT_BUSY()
+#=====================
+# NETWORK_PORT_FREE
+#
+# Check if a port is free (or if a process is listening on it).
+# This check is pretty crude and does not differ on interfaces.
+#
+# Parameters:
+#   $1: Port number
+#
+# Returns:
+#   Non-zero if port is busy.
+#
+#=====================
+NETWORK_PORT_FREE()
 {
     SPACE_SIGNATURE="port"
+    SPACE_DEP="PRINT"
 
     local port="${1}"
     shift
 
-    # TODO
+    # Try sockstat first
+    if command -v sockstat >/dev/null 2>&1; then
+        sockstat 2>/dev/null | awk '{print $6}' | grep -q ":${port}\>"
+        return
+    fi
 
-    return 1
+    if ! command -v netstat >/dev/null 2>&1; then
+        PRINT "sockstat or netstat not found, cannot determine if port is busy or not" "error"
+        return 1
+    fi
+
+    if netstat -tulpn 2>/dev/null | grep "LISTEN" | awk '{print $4}' | grep -q ":${port}\>"; then
+        return 1
+    fi
+}
+
+#=====================
+# NETWORK_LOCAL_IP
+#
+# Get one of the local IP addresses present.
+# It will sort all ipv4 inet addresses and take the largest, excluding gateways (ending with ".1").
+#
+# Parameters:
+#   $1: Interface (optional)
+#
+# Returns:
+#   Non-zero if not found
+#   stdout has the address
+#
+#=====================
+NETWORK_LOCAL_IP()
+{
+    local interface="${1:-}"
+
+    # shellcheck disable=2086
+    ifconfig ${interface:-} | grep -o "inet .*" | cut -d' ' -f 2 | grep ".*[.].*[.].*[.]1$" -v | sort | tail -n1
 }

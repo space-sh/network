@@ -24,13 +24,13 @@ _dep_install:
 
 _info:
     title: Network module
-    desc:|
+    desc: |
         Provides operations for inspecting IPs, services and devices on local network.
 
 discover:
     _info:
         title: Discover devices
-        desc:|
+        desc: |
             Discover devices on a local network given an IP address range.
     _env:
         - RUN: NETWORK_DISCOVER
@@ -38,8 +38,30 @@ discover:
 portscan:
     _info:
         title: Port scanning
-        desc:|
+        desc: |
             Scan for open ports on specific IP address.
     _env:
         - RUN: NETWORK_PORTSCAN
 
+portfree:
+    _info:
+        title: Check if a network port is free
+        desc: |
+            Uses sockstat or netstat to figure out if any process is listening to the port.
+            Does not differ on interfaces, so a port is considered not free if a process
+            is listening on it on all or just a specific interface.
+    _env:
+        - port:
+            title: Port number to check if it is free or not
+        - RUN: NETWORK_PORT_FREE -- "${port}"
+
+localip:
+    _info:
+        title: Get a local IP, optionally of a specified adapter
+        desc: |
+            Uses `ifconfig` to get all adapters, sorts on inet and discards the gateways (all IPs ending with .1),
+            returning the largest IP.
+    _env:
+        - adapter:
+            title: Adapters as seen in ifconfig (optional)
+        - RUN: NETWORK_LOCAL_IP -- "${adapter}"
