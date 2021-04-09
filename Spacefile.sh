@@ -103,7 +103,8 @@ NETWORK_PORTSCAN ()
 #   $1: Port number
 #
 # Returns:
-#   Non-zero if port is busy.
+#   1 if port is busy.
+#   2 if no tool available to check if port is busy
 #
 #=====================
 NETWORK_PORT_FREE()
@@ -117,17 +118,28 @@ NETWORK_PORT_FREE()
     # Try sockstat first
     if command -v sockstat >/dev/null 2>&1; then
         sockstat 2>/dev/null | awk '{print $6}' | grep -q ":${port}\>"
+        # Inherit status in return
         return
     fi
 
-    if ! command -v netstat >/dev/null 2>&1; then
-        PRINT "sockstat or netstat not found, cannot determine if port is busy or not" "error"
-        return 1
+    # Now try netstat
+    if command -v netstat >/dev/null 2>&1; then
+        if netstat -tulpn 2>/dev/null | grep "LISTEN" | awk '{print $4}' | grep -q ":${port}\>"; then
+            return 1
+        fi
+        return 0
     fi
 
-    if netstat -tulpn 2>/dev/null | grep "LISTEN" | awk '{print $4}' | grep -q ":${port}\>"; then
-        return 1
+    # Ok, let's try lsof
+    if command -v lsof >/dev/null 2>&1; then
+        if lsof -nP -iTCP -sTCP:LISTEN | grep -q ":${port}\>"; then
+            return 1
+        fi
+        return 0
     fi
+
+    PRINT "Listen, no sockstat, no netstat nor lsof found, cannot determine if port is busy or not" "debug"
+    return 2
 }
 
 #=====================
