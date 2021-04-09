@@ -100,7 +100,7 @@ jobs:
       - name: Run tests
         run: |
           apt-get update -qq && apt-get install -y -qq curl
-          curl -O https://github.com/space-sh/space/archive/refs/heads/master.tar.gz && mkdir -p ./space_install && tar xzvf "master.tar.gz" -C ./space_install --strip-components=1 && cd ./space_install && ./space /install/ && cd ..
+          curl -LO https://github.com/space-sh/space/archive/refs/heads/master.tar.gz && mkdir -p ./space_install && tar xzvf "master.tar.gz" -C ./space_install --strip-components=1 && cd ./space_install && ./space /install/ && cd ..
           mkdir ~/.ssh
           printf "Host *\n StrictHostKeyChecking no" > ~/.ssh/config
           which bash
